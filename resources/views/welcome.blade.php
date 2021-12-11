@@ -17,10 +17,10 @@
         <div class="d-inline-flex ">
 
           <div class="mx-5">
-            <x-submitbtn value="ثبت نام" css="" />
+            <x-submitbtn value="ثبت نام"  action="register"/>
           </div>
           <div class="mx-5">
-            <x-submitbtn value="ورود"  />
+            <x-submitbtn value="ورود" action="login"  />
           </div>
         </div>
       </div>
