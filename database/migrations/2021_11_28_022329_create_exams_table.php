@@ -16,6 +16,13 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('time');
+            $table->string('title');
+            $table->text('description');
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->date('date_of_holding') ;
+            $table->softDeletes() ;
         });
     }
 

@@ -1,9 +1,11 @@
 @extends('./layouts.app')
 
 @section('content')
+
+    {{-- //Filter users in page// --}}
 <div class="row">
     <div class="col-2  ">
-        <form style="margin-top: 2rem">
+        <form {{route('createcours')}} style="margin-top: 2rem">
             <div class="mb-3">
                 <input type="text" class="form-control" id="nationalcode" name="nationalcode"
                     placeholder="کد ملی">
@@ -12,14 +14,14 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="نام و نام خانوادگی">
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" value="man" type="radio" name="gender" id="gender1">
+                <label class="form-check-label" for="gender1">
                     آقایان
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <input class="form-check-input" value="woman" type="radio" name="gender" id="gender2" >
+                <label class="form-check-label" for="gender2">
                     خانم ها
                 </label>
             </div>
@@ -28,8 +30,10 @@
 
         </form>
     </div>
+    {{-- //create course// --}}
     <div class="col-10 ">
-        <form>
+        <form action="{{route('storecours')}}" method="POST">
+            @csrf
             <div class="row justify-center m-2">
                 <div class="col-2 ">
                     <input type="submit" class="btn btn-danger" value="ایجاد دوره" />
@@ -41,7 +45,7 @@
             </div>
             <div class="row justify-center m-2">
                 <div class="form-group col-8">
-                    <textarea class="form-control  text-center" name="description" id="exampleFormControlTextarea1"
+                    <textarea class="form-control  text-center" name="description" id="description"
                         rows="3" placeholder="توضیحات دوره"></textarea>
                 </div>
             </div>
@@ -49,12 +53,12 @@
                 <div class="col-4">
                     <label for="start_date"> تاریخ شروع دوره</label>
 
-                    <input type="date" name="start_date" id="start_date">
+                    <input type="date" name="start_at" id="start_date">
                 </div>
                 <div class="col-4">
-                    <label for="end_date" id="end_date"> تاریخ پایان دوره </label>
+                    <label for="end_date" id="end_at" name="end_at"> تاریخ پایان دوره </label>
 
-                    <input type="date" name="end_date">
+                    <input type="date" name="end_at">
                 </div>
             </div>
             <div class="row m-3 justify-center">
@@ -64,7 +68,7 @@
                         id="grid-state">
                         <option value="">.&ensp;&ensp;استاد دوره&ensp;&ensp;</option>
                         @foreach ($teachers as $teacher)
-                        <option value="{{ $teacher->id }}">.&ensp;&ensp;{{ $teacher->name }}</option>
+                        <option value="{{ $teacher->id }}">.&ensp;&ensp;{{ $teacher->name ." " . $teacher->family}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -72,11 +76,11 @@
             <div class="row m-3 justify-center">
                 @foreach ($students as $student)
                 <div class="col-3 m-2">
-                    <div class="card" style="width: 20rem; ">
-                        <img class="card-img-top p-3" src="{{ asset("img/1.svg") }}" alt="Card image cap"
-                            style="width: 18rem; height: 10rem;">
+                    <div class="card" style="width: 16rem; ">
+                        <img class="card-img-top p-3" src="{{ asset("img/11.png") }}" alt="Card image cap"
+                            style="width: 14rem; height: 10rem;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $student->name }}</h5>
+                            <h5 class="card-title">{{ $student->name . " " . $student->family}}</h5>
                             <p class="card-text">
                             <ul>
                                 <div class="row my-2">
@@ -89,7 +93,7 @@
                                 </div>
                             </ul>
                             </p>
-                            <input class="form-check-input" type="checkbox" value="{{ $student->id }}" id="addCourse">
+                            <input class="form-check-input" type="checkbox" value="{{ $student->id }}" name="students[]" id="addCourse">
                             <label for="addCourse" class="px-2">به دوره اضافه شود</label>
                         </div>
                     </div>

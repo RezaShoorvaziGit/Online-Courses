@@ -18,7 +18,9 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
             $table->string('title') ;
             $table->text('description');
-      
+            $table->date('start_at');
+            $table->date('end_at');
+
         });
     }
 
