@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Exam;
+use App\Models\QuestionRepository;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -24,11 +27,11 @@ class ExamController extends Controller
     public function store(Request $request)
     {
 
-     
-        Exam::create($request->all());
 
+        $exam = Exam::create($request->all());
+        $examId = $exam->id;
 
-        return redirect()->route('indexexam');
+        return redirect()->route('addquestions', ['examId' => $examId]);
     }
 
     public function edit($id)
@@ -39,17 +42,25 @@ class ExamController extends Controller
         return view('exam.edite', compact('exam', 'courses'));
     }
 
-    public function update(Request $request){
- 
-        $update =  Exam::find($request->id)->update($request->all()) ;
+    public function update(Request $request)
+    {
 
-        return redirect()->route('indexexam') ;
+        $update =  Exam::find($request->id)->update($request->all());
+
+        return redirect()->route('indexexam');
     }
 
     public function destroy($id)
     {
-       Exam::find($id)->delete();
-       return redirect()->route('indexexam') ;
+        Exam::find($id)->delete();
+        return redirect()->route('indexexam');
+    }
+    public function addQuestions($examId)
+    {
+        $userId = Auth::user()->id;
 
+        $questions = QuestionRepository::where('user_id', $userId)->get();
+
+        return view('exam.add_question', compact('examId', 'questions'));
     }
 }

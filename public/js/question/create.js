@@ -56,11 +56,11 @@ function addTask(e) {
 var divs = ["Div1", "Div2"];
 var visibleDivId = null;
 function divVisibility(divId) {
-  // if (visibleDivId === divId) {
-  //   visibleDivId = divId;
-  // } else {
-  //   visibleDivId = divId;
-  // }
+  if (visibleDivId === divId) {
+    visibleDivId = divId;
+  } else {
+    visibleDivId = divId;
+  }
   hideNonVisibleDivs();
 }
 function hideNonVisibleDivs() {

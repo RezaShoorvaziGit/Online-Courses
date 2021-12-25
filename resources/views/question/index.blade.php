@@ -17,7 +17,6 @@
   @php
     $answers = $question->answersrepository ;
   @endphp
-  <form action="">
     <div>
 
       <div class="row border border-dark">
@@ -26,7 +25,7 @@
           <a href="" class="btn btn-sm my-2 btn-secondary ">{{$question->subject}}</a>
           <a href="" class="btn  btn-sm my-2 {{$question->btn_level}}">{{$question->question_level}}</a>
         </div>
-        <div class="col-2"> <input type="submit" class="btn btn-info my-2" value="ویرایش سوال"></div>
+        <div class="col-2"> <a href="" class="btn btn-primary my-2">ویرایش سوال</a> </div>
       </div>
 
       <div class="row bg-secondary rounded-3 ">
@@ -46,7 +45,6 @@
    
       </div>
     </div>
-  </form>
 
   @endforeach
 

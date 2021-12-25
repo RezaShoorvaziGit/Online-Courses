@@ -16,13 +16,10 @@
         </div>
     </div>
 
-    {{-- @role('Admin') --}}
+    @role('Admin')
         @include('dashboard.admin')
-    {{-- @endrole --}}
-
-    {{-- @role('Parent')
-        @include('dashboard.parents')
     @endrole
+
 
     @role('Teacher')
         @include('dashboard.teacher')
@@ -30,7 +27,8 @@
 
     @role('Student')
         @include('dashboard.student')
-    @endrole --}}
+    @endrole
+
 
 </div>
 

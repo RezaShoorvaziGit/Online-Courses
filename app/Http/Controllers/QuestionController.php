@@ -39,7 +39,6 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all()) ;
 
         $userId = auth()->user()->id;
         $question =   QuestionRepository::create([
