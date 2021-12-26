@@ -62,6 +62,7 @@ Route::post('/exam.update',[ExamController::class,'update'])->name('updateexam')
 
 Route::get('/exam.destroy/{id}',[ExamController::class,'destroy'])->name('destroyexam') ;
 Route::get('/exam.addQuestion/{examId}',[ExamController::class,'addQuestions'])->name('addquestions') ;
+Route::post('/exam.addQuestion',[ExamController::class,'addQuestionsStore'])->name('addquestionsstore') ;
 
 
 

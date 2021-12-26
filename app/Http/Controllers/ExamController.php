@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer ;
 use App\Models\Course;
 use App\Models\Exam;
+use App\Models\Question;
 use App\Models\QuestionRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -62,5 +64,30 @@ class ExamController extends Controller
         $questions = QuestionRepository::where('user_id', $userId)->get();
 
         return view('exam.add_question', compact('examId', 'questions'));
+    }
+    public function addQuestionsStore(Request $request){
+        $question = Question::create([
+            'text' => $request->text ,
+            'exam_id' => $request->examId,
+        ]);
+
+        $questionId = $question->id ;
+
+        $answer = $request->answer;
+
+        $options = $request->options;
+
+        foreach ($options as $k => $v) {
+            $status = false;
+            if ($answer == $k)
+                $status = true;
+                Answer::create([
+                'text' => $v,
+                'question_id' => $questionId,
+                'status' => $status,
+            ]);
+        }
+        dd("s") ;
+
     }
 }
