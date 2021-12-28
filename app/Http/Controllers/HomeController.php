@@ -7,6 +7,7 @@ use App\Models\course;
 use App\Models\User;
 use App\Rules\nationalcodeValidation;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -25,10 +26,9 @@ class HomeController extends Controller
     // $teachers = User::all()->where('type','teacher') ;
 
     // $students = User::where('type','student')->orderBy("active_status",'asc')->get() ;
+    $students = User::where([['type','student'],['active_status',0]])->paginate(8,['*'],'students') ;
 
-    $students = User::where([['type','student'],['active_status',0]])->get() ;
-
-    $teachers = User::where([['type','teacher'],['active_status',0]])->get() ;
+    $teachers = User::where([['type','teacher'],['active_status',0]])->paginate(8,['*'],'teachers') ;
 
     return view("home",compact('teachers','students'));
   }

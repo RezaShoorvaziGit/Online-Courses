@@ -27,6 +27,7 @@
 
                     </tr>
                     @endforeach
+                    {{$students->appends(['teachers'=>$teachers->currentPage()])->links()}}
 
                 </table>
             </div>
@@ -51,6 +52,7 @@
 
                     </tr>
                     @endforeach
+                    {{$teachers->appends(['students'=>$students->currentPage()])->links()}}
 
                 </table>
             </div>

@@ -18,9 +18,9 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        $courses = course::all() ;
-        
-        return view('cours.index',compact('courses')) ;
+        $courses = course::all();
+
+        return view('cours.index', compact('courses'));
     }
 
     /**
@@ -56,18 +56,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-       $course =  Course::create([
-            'title'=> $request->title ,
-            'description'=>$request->description,
+        $course =  Course::create([
+            'title' => $request->title,
+            'description' => $request->description,
             'start_at' => $request->start_at,
             'end_at' => $request->end_at,
         ]);
 
-        $course = Course::find($course->id) ;
-     
-        $course->users()->attach( $request->students) ;
-        return redirect()->route('indexcours') ;
+        $course = Course::find($course->id);
 
+        $course->users()->attach($request->students);
+        return redirect()->route('indexcours');
     }
 
     /**
@@ -78,9 +77,11 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id) ;
+        $course = Course::find($id);
 
-       return view('cours.show',compact('course')) ;
+        $exams = $course->exams ;
+        
+        return view('cours.show', compact('course','exams'));
     }
 
     /**

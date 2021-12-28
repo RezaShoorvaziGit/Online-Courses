@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\QuestionRepository;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+session_start();
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/test',function(){
- 
-return view('test') ;
+    // $products = session()->pull('products', []); // Second argument is a default value
+    // if(($key = array_search($idToDelete, $products)) !== false) {
+    //     unset($products[$key]);
+    // }
+    // session()->put('products', $products);
+// return view('test') ;
 }) ;
 
 

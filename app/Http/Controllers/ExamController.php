@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer ;
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Question;
@@ -29,7 +29,7 @@ class ExamController extends Controller
     public function store(Request $request)
     {
 
-
+        session()->forget('questionsAdded') ;
         $exam = Exam::create($request->all());
         $examId = $exam->id;
 
@@ -59,19 +59,29 @@ class ExamController extends Controller
     }
     public function addQuestions($examId)
     {
+       
         $userId = Auth::user()->id;
 
-        $questions = QuestionRepository::where('user_id', $userId)->get();
+        if (session('questionsAdded') == null){
+            $questionAdded = [] ;
+        }else{
+        $questionAdded = session('questionsAdded') ;
+        } 
+                
+        $questions = QuestionRepository::where('user_id', $userId)->whereNotIn('id', $questionAdded)->get();
+
 
         return view('exam.add_question', compact('examId', 'questions'));
     }
-    public function addQuestionsStore(Request $request){
+    public function addQuestionsStore(Request $request)
+    {
         $question = Question::create([
-            'text' => $request->text ,
+            'text' => $request->text,
             'exam_id' => $request->examId,
         ]);
+        $examId = $request->examId;
 
-        $questionId = $question->id ;
+        $questionId = $question->id;
 
         $answer = $request->answer;
 
@@ -79,15 +89,21 @@ class ExamController extends Controller
 
         foreach ($options as $k => $v) {
             $status = false;
-            if ($answer == $k)
+            if ($answer == $k + 1) {
                 $status = true;
-                Answer::create([
+            }
+            Answer::create([
                 'text' => $v,
                 'question_id' => $questionId,
                 'status' => $status,
             ]);
         }
-        dd("s") ;
+        if (session('questionsAdded') == null)
+            session()->put('questionsAdded', []);
 
+
+        session()->push('questionsAdded',  $request->question_repository_id);
+
+        return redirect()->route('addquestions', ['examId' => $examId]);
     }
 }

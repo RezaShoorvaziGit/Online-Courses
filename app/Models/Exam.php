@@ -20,4 +20,8 @@ class Exam extends Model
         'course_id',
         'date_of_holding',
     ] ;
+
+    public function course(){
+        return $this->belongsTo(Course::class) ;
+    }
 }

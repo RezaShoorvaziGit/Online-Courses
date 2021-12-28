@@ -58,6 +58,7 @@
                         <div class="col-7">
                        <input type="text" name="text" class="border col-12 my-2 " value="{{$question->text}}">
                            <input type="hidden" value="{{$examId}}" name="examId"> 
+                           <input type="hidden" value="{{$question->id}}" name="question_repository_id"> 
 
                         </div>
                         <div class="col-3">
