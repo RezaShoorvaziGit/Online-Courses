@@ -1,129 +1,100 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
-<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>Persian DateTime</title>
 
-  <title>Document</title>
+    <link href="{{asset('css/Content/bootstrap.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('css/Content/bootstrap-theme.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css')}}" />
+
+    <script src="{{asset('js/Scripts/jquery-2.1.4.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/Scripts/bootstrap.min.js')}}" type="text/javascript"></script>
+
+    <style type="text/css">
+        body, table {
+            font-family: 'Segoe UI', Tahoma;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-  <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="secondary" data-offstyle="success">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="danger" data-offstyle="warning">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="info">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="info" data-offstyle="light">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="light" data-offstyle="dark" data-style="border">
-<input type="checkbox" checked data-toggle="toggle" data-onstyle="dark" data-offstyle="light" data-style="border">
+    <div style="margin-top: 50px; clear: both;"></div>
+
+    <div class="container" style="max-width: 500px;">
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInput1">تاریخ و زمان</label>
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-targetselector="#exampleInput1" data-trigger="click" data-enabletimepicker="true">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <input type="text" class="form-control" id="exampleInput1" placeholder="تاریخ به همراه زمان" />
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInput3">تاریخ</label>
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput3">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <input type="text" class="form-control" id="exampleInput3" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" data-englishnumber="true" />
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <input id="textbox1" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" data-placement="right" />
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <button class="btn btn-default" data-mddatetimepicker="true" data-targetselector="#input1" data-enabletimepicker="true" data-placement="left" data-trigger="click" data-englishnumber="true">انتخاب تاریخ</button>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="input1" value="" />
+        </div>
+
+        <hr />
+
+        <div style="margin: 20px; clear: both;"></div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <input type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="true" data-placement="left">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <input type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="true" data-placement="right" />
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        $('#input1').change(function() {
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+        $('#textbox1').change(function () {
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+    </script>
+    <script src="{{asset('js/Scripts/MdBootstrapPersianDateTimePicker/calendar.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js')}}" type="text/javascript"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
-</html> --}}
-
-
-
-{{-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml">
- <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <script language="javascript" type="text/javascript">
- function dropdownlist(listindex)
- {
-  
-document.formname.subcategory.options.length = 0;
- switch (listindex)
- {
-  
- case "Home Ware" :
- document.formname.subcategory.options[0]=new Option("Select Sub-Category","");
- document.formname.subcategory.options[1]=new Option("Air-Conditioners/Coolers","Air-Conditioners/Coolers");
- document.formname.subcategory.options[2]=new Option("Audio/Video","Audio/Video");
- document.formname.subcategory.options[3]=new Option("Beddings","Beddings");
- document.formname.subcategory.options[4]=new Option("Camera","Camera");
- document.formname.subcategory.options[5]=new Option("Cell Phones","Cell Phones");
-  
- break;
-  
- case "Education" :
- document.formname.subcategory.options[0]=new Option("Select Sub-Category","");
- document.formname.subcategory.options[1]=new Option("Colleges","Colleges");
- document.formname.subcategory.options[2]=new Option("Institutes","Institutes");
- document.formname.subcategory.options[3]=new Option("Schools","Schools");
- document.formname.subcategory.options[4]=new Option("Tuitions","Tuitions");
- document.formname.subcategory.options[5]=new Option("Universities","Universities");
-  
- break;
-  
- case "Books" :
- document.formname.subcategory.options[0]=new Option("Select Sub-Category","");
- document.formname.subcategory.options[1]=new Option("College Books","College Books");
- document.formname.subcategory.options[2]=new Option("Engineering","Engineering");
- document.formname.subcategory.options[3]=new Option("Magazines","Magazines");
- document.formname.subcategory.options[4]=new Option("Medicine","Medicine");
- document.formname.subcategory.options[5]=new Option("References","References");
-  
- break;
-  
- }
- return true;
- }
- </script>
- </head>
- <title>Dynamic Drop Down List</title>
- <body>
-  
-<form id="formname" name="formname" method="post" action="submitform.asp" >
- <table width="50%" border="0" cellspacing="0" cellpadding="5">
- <tr>
- <td width="41%" align="right" valign="middle">Category :</td>
- <td width="59%" align="left" valign="middle"><select name="category" id="category" onchange="javascript<b></b>: dropdownlist(this.options[this.selectedIndex].value);">
- <option value="">Select Category</option>
- <option value="Home Ware">Home Ware</option>
- <option value="Education">Education</option>
- <option value="Books">Books</option>
- </select></td>
- </tr>
- <tr>
- <td align="right" valign="middle">Sub Category :
- </td>
- <td align="left" valign="middle"><script type="text/javascript" language="JavaScript">
- document.write('<select name="subcategory"><option value="">Select Sub-Category</option></select>')
- </script>
- <noscript><select name="subcategory" id="subcategory" >
- <option value="">Select Sub-Category</option>
- </select>
- </noscript></td>
- </tr>
- </table>
-  
-</form>
-  
-  
-</body>
- </html>
-
- --}}
-
- <head>
-	<meta charset="utf-8" />	
-	<link rel="stylesheet" href="bootstrap.min.css" />
-	<link rel="stylesheet" href="bootstrap-theme.min.css" />
-	<link rel="stylesheet" href="jquery.Bootstrap-PersianDateTimePicker.css" />
-
-    <script type="text/javascript" src="jquery-2.1.1.js"> </script>
-    <script type="text/javascript" src="bootstrap.min.js"> </script>	
-</head>
-.
-.
-.
-<body>
-
-	<script src="calendar.js" type="text/javascript"></script>
-    <script src="jquery.Bootstrap-PersianDateTimePicker.js" type="text/javascript"></script>
-</body>
+</html>

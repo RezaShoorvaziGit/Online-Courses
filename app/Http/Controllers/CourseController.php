@@ -18,8 +18,13 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        $courses = course::all();
+        $user = User::find(auth()->id());
 
+        if ($user->hasRole('Admin')) {
+            $courses = course::all();
+        } else {
+            $courses = $user->courses;
+        }
         return view('cours.index', compact('courses'));
     }
 
@@ -79,9 +84,9 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
 
-        $exams = $course->exams ;
-        
-        return view('cours.show', compact('course','exams'));
+        $exams = $course->exams;
+
+        return view('cours.show', compact('course', 'exams'));
     }
 
     /**

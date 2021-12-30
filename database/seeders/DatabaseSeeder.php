@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             UserSeeder::class ,
             QuestionRepositorySeeder::class,
-            CourseSeeder::class,
-        ]) ;
+            CourseAndExamSeeder::class,
+
+            ]) ;
     }
 }

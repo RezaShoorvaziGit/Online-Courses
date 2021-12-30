@@ -8,14 +8,26 @@ use App\Models\Exam;
 use App\Models\Question;
 use App\Models\QuestionRepository;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Hekmatinasser\Verta\Verta;
 
 class ExamController extends Controller
 {
     public function index()
     {
-        $exams =   Exam::all();
+        $user = User::find(auth()->id());
+        $courses = $user->courses->pluck('id')->toArray() ;
+
+        if ($user->hasRole('Admin')) {
+            $exams =   Exam::all();
+        } elseif ($user->hasRole('Teacher')){
+        $exams =   Exam::whereIn('course_id',$courses)->get();
+        }elseif($user->hasRole('Student')){
+            $exams =   Exam::whereIn('course_id',$courses)->get();
+        }
+
 
         return view('exam.index', compact('exams'));
     }
@@ -28,10 +40,18 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
-
-        session()->forget('questionsAdded') ;
+        session()->forget('questionsAdded');
+        $dataOfHolding = $request->data_of_holding;
+        $dataOfHolding = to_english_numbers($dataOfHolding);
+        $dataOfHolding = Verta::parse($dataOfHolding);
+        $dataOfHolding = Carbon::instance($dataOfHolding->datetime())->isoFormat('YYYY-MM-DD HH:MM:SS');
         $exam = Exam::create($request->all());
         $examId = $exam->id;
+        $exam = Exam::find($examId);
+        $exam->date_of_holding = $dataOfHolding;
+        // dd($dataOfHolding) ;
+        $exam->save();
+
 
         return redirect()->route('addquestions', ['examId' => $examId]);
     }
@@ -59,15 +79,15 @@ class ExamController extends Controller
     }
     public function addQuestions($examId)
     {
-       
+
         $userId = Auth::user()->id;
 
-        if (session('questionsAdded') == null){
-            $questionAdded = [] ;
-        }else{
-        $questionAdded = session('questionsAdded') ;
-        } 
-                
+        if (session('questionsAdded') == null) {
+            $questionAdded = [];
+        } else {
+            $questionAdded = session('questionsAdded');
+        }
+
         $questions = QuestionRepository::where('user_id', $userId)->whereNotIn('id', $questionAdded)->get();
 
 
@@ -105,5 +125,10 @@ class ExamController extends Controller
         session()->push('questionsAdded',  $request->question_repository_id);
 
         return redirect()->route('addquestions', ['examId' => $examId]);
+    }
+
+
+    public function show(){
+        dd("s") ;
     }
 }

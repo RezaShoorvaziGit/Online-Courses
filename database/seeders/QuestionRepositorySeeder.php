@@ -8,10 +8,12 @@ use Illuminate\Database\Seeder;
 class question{
     public $text ;
     public $subject;
-    public function __construct($text,$subject)
+    public function __construct($text,$subject,$btn_level,$question_level)
     {
         $this->text = $text;
         $this->subject = $subject;
+        $this->btn_level = $btn_level;
+        $this->question_level = $question_level;
     }
 } ;
 
@@ -37,12 +39,12 @@ class QuestionRepositorySeeder extends Seeder
     public function run()
     {
 $questions = [
-    new question('کدام یک از موجودات زیر پستاندار است ؟','زیست شناسی'),
-    new question('با کدام وسیله ی زیر میتوان نور را تجزیه کرد؟','زیست شناسی'),
-    new question('کدام یک از موجودات زنده زیر میتواند فتوسنتز را انجام  دهد؟','زیست شناسی'),
-    new question('حاصل عبارت(25+10-5) کدام گزینه است؟','ریاضیات'),
-    new question('اختلاف سن علی و پدرش 30سال است اکنون سن پدر علی 3 برابر سن او است سن پدر علی چند است؟','ریاضیات'),
-    new question('کدام گزینه عددی اول را به ما نشان نمیدهد؟','ریاضیات'),
+    new question('کدام یک از موجودات زیر پستاندار است ؟','زیست شناسی','btn-danger','دشوار'),
+    new question('با کدام وسیله ی زیر میتوان نور را تجزیه کرد؟','زیست شناسی','btn-warning','متوسط'),
+    new question('کدام یک از موجودات زنده زیر میتواند فتوسنتز را انجام  دهد؟','زیست شناسی','btn-success','آسان'),
+    new question('حاصل عبارت(25+10-5) کدام گزینه است؟','ریاضیات','btn-warning','متوسط'),
+    new question('اختلاف سن علی و پدرش 30سال است اکنون سن پدر علی 3 برابر سن او است سن پدر علی چند است؟','ریاضیات','btn-danger','دشوار'),
+    new question('کدام گزینه عددی اول را به ما نشان نمیدهد؟','ریاضیات','btn-success','آسان'),
 ] ;
         // $questions = [
         //     'کدام یک از موجودات زیر پستاندار است ؟',
@@ -86,7 +88,7 @@ $questions = [
         ] ;
    
         $questions = collect($questions)->map(function ($questions) {
-            return ['text' => $questions->text, 'type' => 'multiple_options', 'subject' => $questions->subject,'user_id'=>1,'created_at'=>now(),'updated_at'=>now()];
+            return ['text' => $questions->text, 'type' => 'multiple_options','question_level'=>$questions->question_level,'btn_level'=>$questions->btn_level, 'subject' => $questions->subject,'user_id'=>1,'created_at'=>now(),'updated_at'=>now()];
         });
 
         QuestionRepository::insert($questions->toArray());

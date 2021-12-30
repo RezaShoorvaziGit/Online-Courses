@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->enum('type', ['descriptive', 'multiple_options'])->nullable();
             $table->string('subject')->nullable() ;
             $table->text('text') ;
+            $table->integer('score')->nullable() ;
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams');
             

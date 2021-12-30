@@ -93,11 +93,14 @@
                               </div>
                         </div>
                         @endforeach
+                        <div class="col-1">
+                            <input class="border form-control mt-3" type="text" placeholder="بارم   ">
 
+                        </div>
                     </div>
 
-
                 </div>
+
             </form>
 
                 @endforeach

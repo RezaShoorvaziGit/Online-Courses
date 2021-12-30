@@ -1,6 +1,7 @@
 @extends('./layouts.app')
 
 @section('content')
+@can("AdminTeacher")
 <div class="row">
     <div class="flex items-center">
         <a href="{{route('createcours')}}" class=" btn btn-secondary  text-gray text-sm py-2 px-4  rounded">
@@ -9,6 +10,7 @@
         </a>
     </div>
 </div>
+@endcan
 
 <div class="row  justify-center">
 
@@ -16,7 +18,7 @@
     <div class="col-3 m-2">
         <div class="card" style="width: 20rem; ">
            <a href="{{route("showcourse",["id"=>$course->id])}}">
-            <img class="card-img-top p-3" src="{{ asset("img/1.svg") }}" alt="Card image cap"
+            <img class="card-img-top p-3" src="{{ asset("img/course.svg") }}" alt="Card image cap"
             style="width: 18rem; height: 10rem;">
            </a>
             <div class="card-body">
@@ -24,18 +26,15 @@
                 <p class="card-text">
                 <ul>
                     <div class="row my-2">
-                        <li class="col-6">سه دوره فعال </li>
-                        <li class="col-6">20 ساله </li>
+                        <li class="col-12">{{$course->title}} </li>
                     </div>
                     <div class="row">
-                        <li class="col-5"> 19.75</li>
-                        <li class="col-5">6440125801</li>
+                        
+
                     </div>
                 </ul>
                 </p>
-                {{-- <input class="form-check-input" type="checkbox" value="{{ $student->id }}" name="students[]"
-                    id="addCourse"> --}}
-                <label for="addCourse" class="px-2">به دوره اضافه شود</label>
+           
             </div>
         </div>
     </div>
