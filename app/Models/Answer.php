@@ -13,4 +13,8 @@ class Answer extends Model
         'question_id',
         'status',
     ] ;
+
+    public function question(){
+        return $this->belongsTo(Question::class) ;
+    }
 }

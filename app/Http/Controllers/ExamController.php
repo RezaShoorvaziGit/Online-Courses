@@ -18,14 +18,14 @@ class ExamController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        $courses = $user->courses->pluck('id')->toArray() ;
+        $courses = $user->courses->pluck('id')->toArray();
 
         if ($user->hasRole('Admin')) {
             $exams =   Exam::all();
-        } elseif ($user->hasRole('Teacher')){
-        $exams =   Exam::whereIn('course_id',$courses)->get();
-        }elseif($user->hasRole('Student')){
-            $exams =   Exam::whereIn('course_id',$courses)->get();
+        } elseif ($user->hasRole('Teacher')) {
+            $exams =   Exam::whereIn('course_id', $courses)->get();
+        } elseif ($user->hasRole('Student')) {
+            $exams =   Exam::whereIn('course_id', $courses)->get();
         }
 
 
@@ -128,7 +128,20 @@ class ExamController extends Controller
     }
 
 
-    public function show(){
-        dd("s") ;
+    public function show($id)
+    {
+        $exam = Exam::find($id);
+
+
+        return view('exam.show', compact('exam'));
+    }
+
+
+    public function holding($id)
+    {
+        $questions = Exam::find($id)->questions()->simplePaginate(1) ;
+        
+
+        return view('exam.holding',compact('questions')) ;
     }
 }
