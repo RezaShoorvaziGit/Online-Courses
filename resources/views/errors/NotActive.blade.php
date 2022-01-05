@@ -1,6 +1,8 @@
 <x-header title="عدم تایید" />
 	<link type="text/css" rel="stylesheet" href="{{ asset("errors/css/style.css") }}" />
 
+<body style="background-color: rgb(236, 232, 232)">
+	
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
@@ -11,5 +13,6 @@
 			<a href="{{ route('welcome') }}">گزارش میدهم</a>
 		</div>
 	</div>
+</body>
 
 <x-footer/>

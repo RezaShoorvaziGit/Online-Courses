@@ -4,9 +4,12 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ReportCardController;
+use App\Http\Controllers\UserAnswerController;
 use App\Models\AnswersRepository;
 use App\Models\Question;
 use App\Models\QuestionRepository;
+use App\Models\ReportCard;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -24,28 +27,8 @@ use Hekmatinasser\Verta\Verta;
 */
 
 Route::get('/test', function () {
-    // $products = session()->pull('products', []); // Second argument is a default value
-    // if(($key = array_search($idToDelete, $products)) !== false) {
-    //     unset($products[$key]);
-    // }
-    // session()->put('products', $products);
-    //     return Verta::getGregorian("۱۴۰۰/۱۰/۱۰  ۰۰:۰۰:۰۰");  
-    //     //    dd($v) ;
-    // return view('test') ;
-    // $c = Carbon::now() ;
-    // return verta($c); // 1395-12-09 15:05:56
-    // $v =  Verta::getJalali(2015,12,25);
-
-
-
-    $a = to_english_numbers('۱۴۰۰/12/۱۰  22:22:۰۰');
-
-
-
-
-    $v = Verta::parse($a);
-    $c = Carbon::instance($v->datetime());
-    dd($c);
+    
+    return view('test') ;
 });
 
 
@@ -102,4 +85,10 @@ Route::get('/exam.destroy/{id}', [ExamController::class, 'destroy'])->name('dest
 Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('show.exam');
 
 Route::get('exam/Holding/{id}',[ExamController::class,'holding'])->name('exam.holding') ;
+
+
+Route::post('/exam/holding/store',[UserAnswerController::class,'store'])->name('holding.store');
+
+
+Route::get('reportCard/show/{id}',[ReportCardController::class,'show'])->name('reportcard.show') ;
 

@@ -1,21 +1,21 @@
 @if ($paginator->hasPages())
-    <div  >
-        <ul class="pagination">
-            {{-- Previous Page Link --}}
+    <div class="row justify-between mx-5"  >
+       
+            {{-- Previous Page divnk --}}
             @if ($paginator->onFirstPage())
-                <li class="disabled" aria-disabled="true"><span>@lang('pagination.previous')</span></li>
+                <div class=" col disabled " aria-disabled="true"><span>@lang('pagination.previous')</span></div>
             @else
-                <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
+                <div class="col ajaxSubmit" ><a href="{{ $paginator->previousPageUrl() }}"  onclick="return sendAnswer() ;" rel="prev"class="btn btn-primary">@lang('pagination.previous')</a></div>
             @endif
 
 
 
-            {{-- Next Page Link --}}
+            {{-- Next Page divnk --}}
             @if ($paginator->hasMorePages())
-                <li><a href="{{ $paginator->nextPageUrl() }}" class="btn btn-primary" rel="next">@lang('pagination.next')</a></li>
+                <div class="col "><a href="{{ $paginator->nextPageUrl() }}" onclick="return sendAnswer() ;" class="btn btn-primary" rel="next">@lang('pagination.next')</a></div>
             @else
-                <li class="disabled" aria-disabled="true"><span>@lang('pagination.next')</span></li>
+            <div class="col "><a  href="{{route('reportcard.show',['id'=>app('request')->input('examId')])}}" class="btn btn-primary"  onclick="return sendAnswer();" rel="next">اتمام آزمون </a></div>
             @endif
-        </ul>
+      
     </div>
 @endif

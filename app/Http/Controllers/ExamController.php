@@ -139,9 +139,10 @@ class ExamController extends Controller
 
     public function holding($id)
     {
+        $user_id = auth()->user()->id ;
         $questions = Exam::find($id)->questions()->simplePaginate(1) ;
-        
+        $examId = $id ;
 
-        return view('exam.holding',compact('questions')) ;
+        return view('exam.holding',compact('questions','user_id','examId')) ;
     }
 }
