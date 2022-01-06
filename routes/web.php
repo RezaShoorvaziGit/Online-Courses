@@ -83,7 +83,8 @@ Route::post('/exam.update', [ExamController::class, 'update'])->name('updateexam
 
 Route::get('/exam.destroy/{id}', [ExamController::class, 'destroy'])->name('destroyexam');
 
-Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('show.exam')->middleware('checkStatusExam');
+// Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('show.exam')->middleware('checkStatusExam');
+Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('show.exam');
 
 Route::get('exam/Holding/{id}',[ExamController::class,'holding'])->name('exam.holding') ;
 

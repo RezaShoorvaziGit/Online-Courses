@@ -19,12 +19,14 @@
                         <tr>
                             <td>زمان شروع</td>
                             <td></td>
-                            <td>{{$reportCard->start_at}}</td>
+                            {{-- <td>{{$reportCard->start_at}}</td> --}}
+                            <td>16 دی ماه 1400 14:26:00</td>
                         </tr>
                         <tr>
                             <td>پایان آزمون</td>
                             <td></td>
-                            <td>{{$reportCard->end_at}}</td>
+                            {{-- <td>{{$reportCard->end_at}}</td> --}}
+                            <td>16 دی ماه 1400 14:29:47</td>
                         </tr>
                         <tr>
                             <td>زمان صرف شده</td>

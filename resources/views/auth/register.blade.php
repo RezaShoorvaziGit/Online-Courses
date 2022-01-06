@@ -1,5 +1,16 @@
 <x-header />
+<style>
+  @font-face {
+    font-family: 'byekan';
+    src: url('../../fonts/vazir.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
+body {
+    font-family: "byekan";
+}
+</style>
 <section class="vh-100 gradient-custom bg-dark">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">

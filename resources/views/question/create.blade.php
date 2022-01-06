@@ -75,13 +75,7 @@
     </form>
 </div>
 
-<div>
-    <div class="row">
-        <div class="col5">
-            <h1>سوالات</h1>
-        </div>
-    </div>
-</div>
+
 
 @endsection
 
