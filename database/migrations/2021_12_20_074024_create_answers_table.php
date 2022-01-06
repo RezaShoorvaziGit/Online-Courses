@@ -18,6 +18,7 @@ class CreateAnswersTable extends Migration
             $table->timestamps();
             $table->text('text') ;
             $table->boolean('status')->default(false);
+            $table->foreignId('exam_id');
             $table->foreignId('question_id');
             $table->foreign('question_id')->references('id')->on('questions') ;
         });

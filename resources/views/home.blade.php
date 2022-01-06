@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+@endsection
 @section('content')
 
 
@@ -31,5 +34,8 @@
 
 
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 @endsection

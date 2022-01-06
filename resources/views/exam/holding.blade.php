@@ -5,6 +5,7 @@
     @foreach ($questions as $question)
 
         {{-- <form  action="{{route('holding.store')}}" method="POST"> --}}
+            {{-- @csrf --}}
             <form >
             <input type="hidden" value="{{ $user_id }}" name="user_id" id="user_id">
             <input type="hidden" value="{{ $examId }}" name="exam_id" id="exam_id">
@@ -14,6 +15,7 @@
 
             <div class="row">
                 @foreach ($question->answers as $answer)
+      
                     <div class="col-4 m-3">
 
                         <div class="input-group">

@@ -11,6 +11,7 @@ class Answer extends Model
     public $fillable =[
         'text',
         'question_id',
+        'exam_id',
         'status',
     ] ;
 

@@ -1,3 +1,4 @@
+
 function sendAnswer() {
     $.ajaxSetup({
         headers: {

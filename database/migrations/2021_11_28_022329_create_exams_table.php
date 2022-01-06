@@ -16,6 +16,7 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->enum('status',['off','holding','end'])->default('off') ;
             $table->integer('time');
             $table->string('title');
             $table->text('description');

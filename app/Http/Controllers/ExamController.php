@@ -41,10 +41,14 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         session()->forget('questionsAdded');
-        $dataOfHolding = $request->data_of_holding;
-        $dataOfHolding = to_english_numbers($dataOfHolding);
-        $dataOfHolding = Verta::parse($dataOfHolding);
-        $dataOfHolding = Carbon::instance($dataOfHolding->datetime())->isoFormat('YYYY-MM-DD HH:MM:SS');
+        // $dataOfHolding = $request->data_of_holding;
+        // $dataOfHolding = to_english_numbers($dataOfHolding);
+        // $dataOfHolding = Verta::parse($dataOfHolding);
+        // dd(date('Y-m-d H:i:s')) ;
+        $dataOfHolding = date("Y-m-d H:i:s", $request->date_fo_holding);
+        // dd($dataOfHolding) ;
+        // dd($dataOfHolding);
+        $request->merge(['date_of_holding' => $dataOfHolding]);
         $exam = Exam::create($request->all());
         $examId = $exam->id;
         $exam = Exam::find($examId);
@@ -98,10 +102,12 @@ class ExamController extends Controller
         $question = Question::create([
             'text' => $request->text,
             'exam_id' => $request->examId,
+            'score' => $request->score,
         ]);
         $examId = $request->examId;
 
         $questionId = $question->id;
+
 
         $answer = $request->answer;
 
@@ -116,6 +122,7 @@ class ExamController extends Controller
                 'text' => $v,
                 'question_id' => $questionId,
                 'status' => $status,
+                'exam_id' => $examId,
             ]);
         }
         if (session('questionsAdded') == null)
@@ -130,19 +137,21 @@ class ExamController extends Controller
 
     public function show($id)
     {
-        $exam = Exam::find($id);
+        $exam = Exam::find($id)->toArray();
 
+        $exam["date_of_holding"] = Verta::createTimestamp(strtotime($exam["date_of_holding"]))->format('%B %d، %Y , %A , H:i');
 
-        return view('exam.show', compact('exam'));
+        $count = Exam::find($id)->course->users->count();
+        return view('exam.show', compact('exam', 'count'));
     }
 
 
     public function holding($id)
     {
-        $user_id = auth()->user()->id ;
-        $questions = Exam::find($id)->questions()->simplePaginate(1) ;
-        $examId = $id ;
+        $user_id = auth()->user()->id;
+        $questions = Exam::find($id)->questions()->simplePaginate(1);
+        $examId = $id;
 
-        return view('exam.holding',compact('questions','user_id','examId')) ;
+        return view('exam.holding', compact('questions', 'user_id', 'examId'));
     }
 }

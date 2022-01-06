@@ -12,6 +12,7 @@ class Question extends Model
     public $fillable = [
         'text',
         'exam_id',
+        'score',
         
     ] ;
 

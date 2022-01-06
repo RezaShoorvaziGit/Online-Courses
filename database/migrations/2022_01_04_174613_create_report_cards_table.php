@@ -15,10 +15,14 @@ class CreateReportCardsTable extends Migration
     {
         Schema::create('report_cards', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestamps() ;
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('end_at')->nullable();
             $table->foreignId('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams') ;
             $table->integer('user_id') ;
+            $table->integer('score') ;
+            $table->integer('score_total') ;
         });
     }
 

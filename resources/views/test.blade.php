@@ -1,131 +1,23 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Persian DateTime</title>
-
-    <link href="{{asset('css/Content/bootstrap.min.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('css/Content/bootstrap-theme.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css')}}" />
-
-    <script src="{{asset('js/Scripts/jquery-2.1.4.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/Scripts/bootstrap.min.js')}}" type="text/javascript"></script>
-
-    <style type="text/css">
-        body, table {
-            font-family: 'Segoe UI', Tahoma;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-    <div style="margin-top: 50px; clear: both;"></div>
-
-    <div class="container" style="max-width: 500px;">
-
-        <div class="form-group">
-            <label class="sr-only" for="exampleInput1">تاریخ و زمان</label>
-            <div class="input-group">
-                <div class="input-group-addon" data-mddatetimepicker="true" data-targetselector="#exampleInput1" data-trigger="click" data-enabletimepicker="true">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </div>
-                <input type="text" class="form-control" id="exampleInput1" placeholder="تاریخ به همراه زمان" />
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="form-group">
-            <label class="sr-only" for="exampleInput3">تاریخ</label>
-            <div class="input-group">
-                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput3">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </div>
-                <input type="text" class="form-control" id="exampleInput3" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" data-englishnumber="true" />
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="form-group">
-            <input id="textbox1" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" data-placement="right" />
-        </div>
-
-        <hr />
-
-        <div class="form-group">
-            <button class="btn btn-default" data-mddatetimepicker="true" data-targetselector="#input1" data-enabletimepicker="true" data-placement="left" data-trigger="click" data-englishnumber="true">انتخاب تاریخ</button>
-        </div>
-
-        <div class="form-group">
-            <input type="text" class="form-control" id="input1" value="" />
-        </div>
-
-        <hr />
-
-        <div style="margin: 20px; clear: both;"></div>
-
-        <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </div>
-                <input type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="true" data-placement="left">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </div>
-                <input type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="true" data-placement="right" />
-            </div>
-        </div>
-
-    </div>
-    <script type="text/javascript">
-        $('#input1').change(function() {
-            var $this = $(this),
-                value = $this.val();
-            alert(value);
-        });
-        $('#textbox1').change(function () {
-            var $this = $(this),
-                value = $this.val();
-            alert(value);
-        });
-    </script>
-    <script src="{{asset('js/Scripts/MdBootstrapPersianDateTimePicker/calendar.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js')}}" type="text/javascript"></script>
-</body>
-</html> --}}
-
-
+<!DOCTYPE html>
 <html>
-   <head>
-      <title>Ajax Example</title>
-      
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-      </script>
-      
-      <script>
-         function getMessage() {
-            $.ajax({
-               type:'POST',
-               url:'/getmsg',
-               data:'_token = <?php echo csrf_token() ?>',
-               success:function(data) {
-                  $("#msg").html(data.msg);
-               }
-            });
-         }
-      </script>
-   </head>
-   
-   <body>
-      <div id = 'msg' oncl>This message will be replaced using Ajax. 
-         Click the button to replace the message.</div>
-      <?php
-      ?>
-   </body>
+
+<head>
+    <link rel="stylesheet" href="{{asset('js/persian-datepicker/dist/css/persian-datepicker.css')}}" />
+</head>
+
+<body>
+    <input type="text" class="date-picker" />
+    <script src="{{asset('js/jquery/dist/jquery.js')}}"></script>
+    <script src="{{asset('js/persian-datepicker/dist/js/persian-datepicker.min.js')}}"></script>
+    <script src="{{asset('js/persian-date/dist/persian-date.min.js')}}"></script>
+
+</body>
+<script type="text/javascript">
+  $(document).ready(function() {
+	$(".date-picker").pDatepicker({
+		initialValue: false		
+	});
+  });
+</script>
 
 </html>

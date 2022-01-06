@@ -98,7 +98,7 @@
                                 </div>
                             @endforeach
                             <div class="col-1">
-                                <input class="border form-control mt-3" type="text" placeholder="بارم   ">
+                                <input class="border form-control mt-3" type="text" name="score" placeholder="بارم   ">
 
                             </div>
                         </div>

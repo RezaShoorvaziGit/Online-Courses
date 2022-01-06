@@ -12,7 +12,7 @@
 
             {{-- Next Page divnk --}}
             @if ($paginator->hasMorePages())
-                <div class="col "><a href="{{ $paginator->nextPageUrl() }}" onclick="return sendAnswer() ;" class="btn btn-primary" rel="next">@lang('pagination.next')</a></div>
+                <div class="col "><a  href="{{ $paginator->nextPageUrl() }}"  onclick="return sendAnswer() ;" class="btn btn-primary" rel="next">@lang('pagination.next')</a></div>
             @else
             <div class="col "><a  href="{{route('reportcard.show',['id'=>app('request')->input('examId')])}}" class="btn btn-primary"  onclick="return sendAnswer();" rel="next">اتمام آزمون </a></div>
             @endif
